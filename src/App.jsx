@@ -2,36 +2,28 @@ import "./App.css";
 import { useState } from "react";
 
 const App = () => {
-  const [count, setValue] = useState(0);
-  const [step, setStep] = useState(1);
+  console.log('Rendered');
 
+  const [values, setValues] = useState({
+      nums: [1, 2]
+  });
 
-  function clickHandler() {
-    if(step > 1){
-		setStep(step - 1);}
-	}
-  function clickHandler2() {
-		setStep(step + 1);
-	}
+  const handleClick = () => {
+      const valuesCopy = {...values};
+      const lastNum = valuesCopy.nums[valuesCopy.nums.length - 1];
 
-  function clickHandler3(){
-    setValue(count + step)
-  }
-  function clickHandler4(){
-    setValue(count - step)
+      valuesCopy.nums.push(lastNum + 1);
+
+      setValues(valuesCopy);
   }
 
   return (
-    <>
-    <button onClick={clickHandler}>Step -</button>
-    <div>{step}</div>
-    <button onClick={clickHandler2}>Step +</button>
-    <br/>
-    <button onClick={clickHandler4}>Value -</button>
-    <div>{count}</div>
-    <button onClick={clickHandler3}>Value +</button>
-    </>
+      <>
+          <button onClick={handleClick}>Add number</button>
+          <div>{values.nums}</div>
+      </>
   );
-};
+}
+
 
 export default App;
