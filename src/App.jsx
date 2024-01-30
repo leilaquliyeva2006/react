@@ -1,29 +1,24 @@
 import "./App.css";
 import { useState } from "react";
-
+import Div from "./component/Div/Div";
+import Button from "./component/Button/Button";
 const App = () => {
-  console.log('Rendered');
+  const [count, setCount] = useState(0);
 
-  const [values, setValues] = useState({
-      nums: [1, 2]
-  });
-
-  const handleClick = () => {
-      const valuesCopy = {...values};
-      const lastNum = valuesCopy.nums[valuesCopy.nums.length - 1];
-
-      valuesCopy.nums.push(lastNum + 1);
-
-      setValues(valuesCopy);
+  function clickHandler() {
+    setCount(count + 1);
+  }
+  function clickHandler2() {
+    setCount(count - 1);
   }
 
   return (
-      <>
-          <button onClick={handleClick}>Add number</button>
-          <div>{values.nums}</div>
-      </>
+    <>
+      <Button OnClik={clickHandler2}>-</Button>
+      <Div>{count}</Div>
+      <Button OnClik={clickHandler}>+</Button>
+    </>
   );
-}
-
+};
 
 export default App;
